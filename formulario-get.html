@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulario GET</title>
+    <style>
+        body { font-family: Arial; max-width: 640px; margin: 2rem auto; }
+        form { display: grid; gap: .5rem; margin-bottom: 1rem; }
+        #resultado { border: 1px solid #ddd; border-radius: 6px; padding: .5rem 1rem; }
+    </style>
+</head>
+<body>
+    <h1>Formulario con method="get"</h1>
+
+    <!-- Envía los campos a esta misma página, dentro de la URL -->
+    <form action="formulario-get.html" method="get">
+        <input type="text" name="nombre" placeholder="Nombre" required>
+        <input type="text" name="curso" placeholder="Curso" required>
+        <button type="submit">Enviar</button>
+    </form>
+
+    <section id="resultado">Aún no se ha enviado el formulario.</section>
+
+    <script>
+        const query = new URLSearchParams(location.search);
+        const resultado = document.querySelector('#resultado');
+        if (query.has('nombre') || query.has('curso')) {
+            resultado.textContent =
+                `Nombre: ${query.get('nombre')} | Curso: ${query.get('curso')}`;
+        }
+    </script>
+</body>
+</html>
